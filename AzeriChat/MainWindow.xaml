@@ -1,0 +1,144 @@
+﻿<Window x:Class="AzeriChat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AzeriChat" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="WordPad" Height="800" Width="1100"
+        Icon="Images\icons8-txt-64.png"
+        ResizeMode="CanResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+           Text="WordPad Killer"
+           Foreground="#683cb4"
+           VerticalAlignment="Top"
+           HorizontalAlignment="Center"
+           Margin="0 10 0 0"
+           FontSize="25"
+           FontWeight="Medium" />
+
+        <ToolBarTray Grid.Row="1">
+            <ToolBar ClipToBounds="False" Style="{StaticResource MaterialDesignToolBar}">
+                <Button Content="{materialDesign:PackIcon Kind=ContentSaveEdit}"
+                ToolTip="Load"
+                Click="Load_From" />
+
+                <Button Content="{materialDesign:PackIcon Kind=ContentSave}"
+                ToolTip="Save"
+                Click="Save" />
+
+                <Separator />
+
+                <Button Command="Cut"
+                Content="{materialDesign:PackIcon Kind=ContentCut}"
+                ToolBar.OverflowMode="AsNeeded"
+                ToolTip="Cut" />
+
+                <Button Command="Copy"
+                Content="{materialDesign:PackIcon Kind=ContentCopy}"
+                ToolBar.OverflowMode="AsNeeded"
+                ToolTip="Copy that stuff" />
+
+                <Separator />
+                <Button Command="Paste"
+        Content="{materialDesign:PackIcon Kind=ContentPaste}"
+        ToolBar.OverflowMode="AsNeeded"
+        ToolTip="Paste some stuff" />
+
+                <ListBox SelectedIndex="0">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="MaterialDesignToolToggleFlatListBox" />
+                            <TextBlock Text="Exclusive selection" />
+                            <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behavior" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem Selected="ToLeft">
+                        <ContentControl Content="{materialDesign:PackIcon Kind=FormatAlignLeft}"/>
+                    </ListBoxItem>
+                    <ListBoxItem Selected="ToCenter">
+                        <ContentControl Content="{materialDesign:PackIcon Kind=FormatAlignCenter}"/>
+                    </ListBoxItem>
+                    <ListBoxItem Selected="ToRight">
+                        <ContentControl Content="{materialDesign:PackIcon Kind=FormatAlignRight}" />
+                    </ListBoxItem>
+                    <ListBoxItem Selected="ToJustify">
+                        <ContentControl Content="{materialDesign:PackIcon Kind=FormatAlignJustify}" />
+                    </ListBoxItem>
+                </ListBox>
+
+                <Separator />
+
+                <ListBox SelectionMode="Extended">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="MaterialDesignToolToggleListBox" />
+                            <TextBlock Text="Multiple selection" />
+                            <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behavior" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem Selected="Bold_Selected" Unselected="Bold_Unselected" Content="{materialDesign:PackIcon Kind=FormatBold}" />
+                    <ListBoxItem Selected="Italic_Selected" Unselected="Italic_Unselected" Content="{materialDesign:PackIcon Kind=FormatItalic}" />
+                    <ListBoxItem Selected="Underline_Selected" Unselected="Underline_Unselected" Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
+                </ListBox>
+
+                <Separator />
+
+                <Label VerticalAlignment="Center" Content="Font size:" />
+                <ComboBox Name="FontSizeCombo" SelectionChanged="FontSize_Changed">
+                    <ComboBoxItem Content="10" />
+                    <ComboBoxItem Content="12" IsSelected="True" />
+                    <ComboBoxItem Content="14" />
+                    <ComboBoxItem Content="16" />
+                    <ComboBoxItem Content="18" />
+                    <ComboBoxItem Content="20" />
+                    <ComboBoxItem Content="22" />
+                    <ComboBoxItem Content="24" />
+                    <ComboBoxItem Content="26" />
+                    <ComboBoxItem Content="28" />
+                    <ComboBoxItem Content="30" />
+                    <ComboBoxItem Content="32" />
+                </ComboBox>
+
+                <Separator />
+
+                <Grid>
+                    <TextBlock Text="Auto Save" VerticalAlignment="Center" Margin="11 0 10 25" />
+                    <ToggleButton
+        Checked="Toggle_Check"
+        Unchecked="Toggle_Uncheck"
+        Margin="12,12,12,0"
+        Style="{StaticResource MaterialDesignSwitchToggleButton}"
+        ToolTip="Default ToggleButton Style" />
+                </Grid>
+            </ToolBar>
+        </ToolBarTray>
+
+        <StackPanel Grid.Row="2" Margin="35">
+            <TextBox Name="TextBox1" TextChanged="TextBox1_Changed"
+        Height="528"
+        materialDesign:HintAssist.Hint="Text area"
+        AcceptsReturn="True"
+        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
+        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+        TextWrapping="Wrap"
+        VerticalScrollBarVisibility="Auto" />
+        </StackPanel>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Grid.Row="2" Text="©Penahli" Foreground="#683cb4" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 590 0 0" FontSize="10" FontWeight="Medium" />
+    </Grid>
+</Window>
